@@ -3,23 +3,33 @@ package org.launchcode.javawebdevtechjobspersistent.models;
 
 
 import javax.persistence.Entity;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Skill extends AbstractEntity {
 
-    @NotBlank
-    @NotNull(message = "No skills available.")
-    private String skill;
+    @Valid
+    @NotNull
+    @NotBlank(message = "No skills available.")
+    private String description;
+
+
+    public Skill(String description) {
+        this.description = description;
+    }
 
     public Skill() {}
 
-    public String getSkill() {
-        return skill;
+    // Getters and Setters
+    public String getDescription() {
+        return description;
     }
 
-    public void setSkill(String skill) {
-        this.skill = skill;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
 }

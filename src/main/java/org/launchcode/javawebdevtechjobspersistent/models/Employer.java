@@ -1,11 +1,11 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 
 @Entity
 public class Employer extends AbstractEntity {
@@ -14,6 +14,10 @@ public class Employer extends AbstractEntity {
     @NotNull
     @NotBlank(message = "Must have a location")
     private String location;
+
+    public Employer(String location) {
+        this.location = location;
+    }
 
     public Employer() {}
 
@@ -25,7 +29,6 @@ public class Employer extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
-
 
 
 }
