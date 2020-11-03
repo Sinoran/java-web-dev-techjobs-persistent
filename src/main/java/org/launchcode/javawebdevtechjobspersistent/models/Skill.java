@@ -1,29 +1,27 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 
-
 import javax.persistence.Entity;
-import javax.validation.Valid;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Skill extends AbstractEntity {
 
-    @Valid
-    @NotNull
-    @NotBlank(message = "No skills available.")
+    @NotBlank
     private String description;
 
+    @ManyToMany(mappedBy = "skills")
+    private final List<Job> jobs = new ArrayList<>();
 
-    public Skill(String description) {
+    public Skill(@NotBlank String description) {
         this.description = description;
     }
 
     public Skill() {}
 
-    // Getters and Setters
     public String getDescription() {
         return description;
     }
@@ -32,4 +30,5 @@ public class Skill extends AbstractEntity {
         this.description = description;
     }
 
+    public List<Job> getJobs() { return jobs; }
 }

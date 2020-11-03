@@ -1,27 +1,27 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
 import javax.persistence.Entity;
-import javax.validation.Valid;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 public class Employer extends AbstractEntity {
 
-    @Valid
-    @NotNull
-    @NotBlank(message = "Must have a location")
+    @NotBlank
     private String location;
 
-    public Employer(String location) {
+    @OneToMany(mappedBy = "employer")
+    private List<Job> jobs = new ArrayList<>();
+
+    public Employer(@NotBlank String location) {
         this.location = location;
     }
 
-    public Employer() {}
+    public Employer () {}
 
-    // Getters and Setters
     public String getLocation() {
         return location;
     }
@@ -29,6 +29,5 @@ public class Employer extends AbstractEntity {
     public void setLocation(String location) {
         this.location = location;
     }
-
 
 }
